@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model diagnosis {
+  id           BigInt    @id @default(autoincrement())
+  hasilcf      Float?
+  penyakit_id  BigInt?
+  id_user      BigInt?
+  tanggalwaktu DateTime? @db.Timestamp(6)
+  user         user?     @relation(fields: [id_user], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  penyakit     penyakit? @relation(fields: [penyakit_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model gejala {
+  id             BigInt           @id @default(autoincrement())
+  nama           String?          @db.VarChar
+  penyakitgejala penyakitgejala[]
+}
+
+model penyakit {
+  id             BigInt           @id @default(autoincrement())
+  nama           String?          @db.VarChar
+  deskripsi      String?
+  solusi         String?
+  diagnosis      diagnosis[]
+  penyakitgejala penyakitgejala[]
+}
+
+model penyakitgejala {
+  id          BigInt    @id @default(autoincrement())
+  cf          Float?
+  penyakit_id BigInt?
+  gejala_id   BigInt?
+  gejala      gejala?   @relation(fields: [gejala_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  penyakit    penyakit? @relation(fields: [penyakit_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model user {
+  id              BigInt      @id @default(autoincrement())
+  name            String?     @db.VarChar
+  email           String?     @unique @db.VarChar
+  password        String?     @db.VarChar
+  profile_picture String?     @db.VarChar
+  role_id         Int?
+  diagnosis       diagnosis[]
+}
