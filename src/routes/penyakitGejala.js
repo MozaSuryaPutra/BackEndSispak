@@ -24,7 +24,7 @@ router.get(
   validateGetPenyakitGejala,
   getPenyakitGejala
 );
-router.get("/search", validateGetCarsSearched, getCarsSearched);
+
 router.get(
   "/:id",
   authorization(1, 2),
