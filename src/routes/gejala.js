@@ -16,7 +16,6 @@ const {
 const { authorization } = require("../middlewares/auth");
 const router = express.Router();
 
-// Route is now just `/` because `/models` is handled by the parent route in index.js
 router
   .route("/")
   .get(authorization(1, 2), validateGetGejala, getGejala)

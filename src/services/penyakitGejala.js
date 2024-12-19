@@ -24,7 +24,7 @@ exports.createPenyakitGejala = async (data, file) => {
 };
 
 exports.updatePenyakitGejala = async (id, data) => {
-  // find Car is exist or not (validate the data)
+  // find Penyakit Gejala is exist or not (validate the data)
   const existingPenyakitGejala =
     penyakitGejalaRepository.getPenyakitGejalaById(id);
   if (!existingPenyakitGejala) {
@@ -60,12 +60,4 @@ exports.deletePenyakitGejalaById = async (id) => {
     throw new InternalServerError("Failed to delete Penyakit Gejala");
   }
   return deletedPenyakitGejala;
-};
-
-exports.getCarsSearched = async (capacity, availableAt) => {
-  const cars = await carRepository.getCarsSearched(capacity, availableAt);
-  if (cars.length < 1) {
-    throw new NotFoundError("Car Is Not Found");
-  }
-  return cars;
 };

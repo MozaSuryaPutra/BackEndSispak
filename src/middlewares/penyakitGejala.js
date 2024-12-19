@@ -117,31 +117,3 @@ exports.validateDeletePenyakitGejala = (req, res, next) => {
   }
   next();
 };
-
-exports.validateGetCarsSearched = (req, res, next) => {
-  const carValidationSchema = z.object({
-    capacity: z
-      .string()
-      .transform((val) => parseInt(val, 10))
-      .refine((val) => !isNaN(val) && val > 0, {
-        message: "Capacity must be a positive number",
-      }),
-    availableAt: z.string().refine(
-      (date) => {
-        const datePattern = /^\d{4}-\d{2}-\d{2}$/;
-        return datePattern.test(date) && !isNaN(Date.parse(date));
-      },
-      {
-        message: "Available date must be in the format YYYY-MM-DD",
-      }
-    ),
-  });
-
-  const parsed = carValidationSchema.safeParse(req.query);
-
-  if (!parsed.success) {
-    throw new BadRequestError(parsed.error.errors);
-  }
-
-  next();
-};

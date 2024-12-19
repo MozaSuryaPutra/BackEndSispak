@@ -27,7 +27,7 @@ exports.createPenyakit = async (data) => {
 };
 
 exports.updatePenyakit = async (id, data, file) => {
-  // find Car is exist or not (validate the data)
+  // find Penyakit is exist or not (validate the data)
   const existingPenyakit = await penyakitRepository.getPenyakitById(id);
 
   if (!existingPenyakit) {
@@ -36,14 +36,14 @@ exports.updatePenyakit = async (id, data, file) => {
 
   // replicated existing data with new data
   data = {
-    ...existingPenyakit, // existing Car
+    ...existingPenyakit, // existing Penyakit
     ...data,
   };
 
   // if exist, we will update the Car data
   const updatedPenyakit = penyakitRepository.UpdatePenyakit(id, data);
   if (!updatedPenyakit) {
-    throw new InternalServerError(["Failed to update Car!"]);
+    throw new InternalServerError(["Failed to update Penyakit!"]);
   }
 
   return updatedPenyakit;

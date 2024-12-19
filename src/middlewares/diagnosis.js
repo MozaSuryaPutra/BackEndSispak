@@ -6,7 +6,7 @@ exports.validateDiagnosisInput = (req, res, next) => {
     return res.status(400).json({
       success: false,
       message:
-        "Data tidak valid: id_user harus ada dan gejala harus berupa array. Atau anda minimal harus input 2 gejala",
+        "Data tidak valid: id_user harus ada dan gejala harus berupa array. Atau anda minimal harus input 3 gejala",
     });
   }
 

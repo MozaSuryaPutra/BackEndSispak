@@ -38,7 +38,7 @@ exports.updateGejala = async (id, data) => {
 };
 
 exports.deleteGejala = async (id) => {
-  // find student is exist or not (validate the data)
+  // find gejala is exist or not (validate the data)
   const existingGejala = await gejalaRepository.getGejalaById(id);
   if (!existingGejala) {
     throw new NotFoundError("Gejala is Not Found!");
@@ -47,7 +47,7 @@ exports.deleteGejala = async (id) => {
   // if exist, we will delete the student data
   const deletedGejala = await gejalaRepository.deleteGejala(id);
   if (!deletedGejala) {
-    throw new InternalServerError(["Failed to delete Car Model!"]);
+    throw new InternalServerError(["Failed to delete Gejala!"]);
   }
 
   return deletedGejala;

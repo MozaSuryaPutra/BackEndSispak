@@ -7,6 +7,6 @@ const router = express.Router();
 // It will be run the URL based on path and the method
 router
   .route("/")
-  .post(authorization(1), validateDiagnosisInput, createDiagnosis);
+  .post(authorization(1, 2), validateDiagnosisInput, createDiagnosis);
 
 module.exports = router;

@@ -30,5 +30,5 @@ exports.updatePenyakit = async (req, res, next) => {
 exports.deletePenyakitById = async (req, res, next) => {
   const { id } = req.params;
   const deletedPenyakit = await penyakitService.deletePenyakitById(id);
-  successResponse(res, deletedPenyakit, "Successfully delete car-type data");
+  successResponse(res, deletedPenyakit, "Successfully delete Penyakit data");
 };

@@ -70,11 +70,3 @@ exports.deletePenyakitGejalaById = async (req, res, next) => {
     await penyakitGejalaService.deletePenyakitGejalaById(id);
   successResponse(res, deleteThePenyakitGejala, "Delete Penyakit is Success");
 };
-
-exports.getCarsSearched = async (req, res, next) => {
-  const data = await carService.getCarsSearched(
-    req.query?.capacity,
-    req.query?.availableAt
-  );
-  successResponse(res, data);
-};
